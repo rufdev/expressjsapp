@@ -1,16 +1,14 @@
 FROM node:16 as builder
 
+RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
 
-ARG NODE_ENV=production
-ENV NODE_ENV=${NODE_ENV}
-
-# RUN apk --no-cache add python make g++
-COPY package*.json ./
-
+# Install app dependencies
+COPY package.json /usr/src/app/
 RUN npm install
 
-COPY . .
+# Bundle app source
+COPY . /usr/src/app
 
 EXPOSE 3000
 
