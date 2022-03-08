@@ -8,10 +8,10 @@ ENV NODE_ENV=${NODE_ENV}
 # RUN apk --no-cache add python make g++
 COPY package*.json ./
 # RUN npm install -g nodemon
-RUN npm install
+RUN npm ci
 
 COPY . .
 
-EXPOSE 80
+EXPOSE 3000
 
 CMD [ "npm","run", "start" ]
